@@ -9,6 +9,7 @@
 
 int main_barcode(int argc, char *argv[]){
 	//assume lines are never longer than 512 char
+	printf("I made it into main");
 	char line1[512],line2[512];
 	char *inputfiles[2]={0,0},*outputfile=0;
 	FILE *inputfp1=0,*inputfp2=0,*outputfp=stdout;
@@ -16,6 +17,8 @@ int main_barcode(int argc, char *argv[]){
 		fprintf(stderr,"The command is bwa barcode <-o outputFile> R1file R2file\n");
 		return 1;
 	}
+	if (argc ==3) printf("3 args");
+	else printf("5 args");
 	//***********************************************************************
 	//parse the command line
 	//
@@ -57,7 +60,7 @@ int main_barcode(int argc, char *argv[]){
 		}
 	
 	}
-	printf("all good");
+	printf("all files opened");
 	
 	
  //**********************************************************************
@@ -75,7 +78,7 @@ int main_barcode(int argc, char *argv[]){
 			i++;
 		}
 		else if (i%4==2){
-			fgets(line2, 16, inputfp1);
+			fgets(line2, BARCODE_LENGTH, inputfp1);
 			fprintf(outputfile, "%s:%s", line1, line2);
 			fgets(outputfile, 256, inputfp2);
 			i++;
@@ -87,7 +90,6 @@ int main_barcode(int argc, char *argv[]){
 			
 		}
 		
-		 
 	}
 
 	fclose(inputfp1);
