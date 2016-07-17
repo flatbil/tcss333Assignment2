@@ -44,23 +44,23 @@ int main_barcode(int argc, char *argv[]){
 	//use fopen to open streams to the two input files and the output file if one is given
 	//check that the open is successful	(i.e. that the file pointers are not 0)			
  //**********************************************************************
-	inputfp1 = fopen(inputfiles[0], 'r');
+	inputfp1 = fopen(inputfiles[0], "r");
 	if (inputfp1 == 0){
 		printf(stderr,"inputfile 1 did not open");
 	}
-	inputfp2 = fopen(inputfiles[1], 'r');
+	inputfp2 = fopen(inputfiles[1], "r");
 	if (inputfp1 == 0){
 		printf(stderr,"inputfile 2 did not open");
 	}
 	
 	if(argc == 5) {
-		outputfp = fopen(outputfile, 'w');
+		outputfp = fopen(outputfile, "w");
 		if (inputfp1 == 0){
 			printf(stderr,"outputfile did not open");
 		}
 	
 	}
-	printf("all files opened");
+	printf("file opening sequence complete");
 	
 	
  //**********************************************************************
@@ -71,7 +71,7 @@ int main_barcode(int argc, char *argv[]){
  //HINT: this can be done with one while loop using fgets, strlen and fprintf
  //HINT:  use the modulo % operator to figure out which lines are sequence lines
  //**********************************************************************
-	while(!feof(inputfp1) || !feof(inputfp2)){
+	while(!(feof(inputfp1) || feof(inputfp2))){
 		int i = 1;
 		if (i%4==1){
 			fgets(line1,256, inputfp2);
